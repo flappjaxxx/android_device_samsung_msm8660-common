@@ -81,13 +81,13 @@ case "$target" in
 	 echo 1 > /sys/module/pm_8660/modes/cpu1/power_collapse/idle_enabled
 	 echo 0 > /sys/module/pm_8660/modes/cpu0/standalone_power_collapse/idle_enabled
 	 echo 0 > /sys/module/pm_8660/modes/cpu1/standalone_power_collapse/idle_enabled
-	 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-	 echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-	 #echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	 #echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	 #echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-	 #echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-	 #echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential 
+	 echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+	 echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+	 echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+	 echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+	 echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+	 echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+	 echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential 
 	 echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
 	 chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
@@ -102,7 +102,7 @@ case "$target" in
 	 chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
 	 chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
 # set scheduler as CFQ after boot complete.( scheduler is set as deadline at defconfig file )
-	 echo "cfq" > /sys/block/mmcblk0/queue/scheduler
+	 echo "sio" > /sys/block/mmcblk0/queue/scheduler
         ;;
 esac
 
